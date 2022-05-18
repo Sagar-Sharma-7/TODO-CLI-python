@@ -37,13 +37,30 @@ def to_do():
             print(bcolors.BOLD + "Enter task no ", n)
             task = input("\tEnter your task: ")
             t_list.append(task)
+            n += 1
             ans = input("Do you wish to enter more tasks (y/n)? : ")
             if ans.lower() in ["n", "no", "nope", "nah"]:
-                print("Adding tasks...")
+                print("")
+                pickle.dump(t_list, f)
+                print(bcolors.HEADER + "Tasks added to your list successfully...")
                 break
-        print(t_list)
+            f.close()
+    elif option == 2:
+        try:
+            with open("./files/to_do_list.dat", "rb") as file:
+                while True:
+                    data = pickle.load(file)
+                    print("")
+                    print(bcolors.OKGREEN +"\tDate&Time : ", data[0])
+                    for i in range(1, len(data)):
+                        print("\t",i, " : ", data[i])
+                
+        except EOFError:
+            print("Closing file...")
+            pass
         
 to_do()
+
     
 
 
