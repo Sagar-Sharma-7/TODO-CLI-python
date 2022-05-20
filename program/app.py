@@ -1,4 +1,5 @@
 import pickle
+import os
 import datetime as dt
 
 # colors for terminal
@@ -50,6 +51,7 @@ def to_do():
             with open("./files/to_do_list.dat", "rb") as file:
                 while True:
                     data = pickle.load(file)
+                    print("\tEmpty file...")
                     print("")
                     print(bcolors.OKGREEN +"\tDate&Time : ", data[0])
                     for i in range(1, len(data)):
@@ -58,6 +60,8 @@ def to_do():
         except EOFError:
             print("Closing file...")
             pass
+    elif option == 3:
+        print(bcolors.FAIL + "You can delete binary file (to_do_list.dat) manually.")
         
 to_do()
 
