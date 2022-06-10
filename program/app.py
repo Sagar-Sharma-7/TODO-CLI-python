@@ -45,7 +45,6 @@ def to_do():
                 pickle.dump(t_list, f)
                 print(bcolors.HEADER + "Tasks added to your list successfully...")
                 break
-            f.close()
     elif option == 2:
         try:
             with open("./files/to_do_list.dat", "rb") as file:
@@ -64,6 +63,7 @@ def to_do():
         print(bcolors.FAIL + "You can delete binary file (to_do_list.dat) manually.")
         
 to_do()
+f.close()
 
     
 
