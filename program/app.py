@@ -1,24 +1,12 @@
+from ColorChalks import ColorChalks # pip install ColorChalks
 import pickle
-import os
 import datetime as dt
-
-# colors for terminal
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 
 f = open("./files/to_do_list.dat", "ab")
 
 print("")
-print(bcolors.OKBLUE + "Starting program...\n")
+print(ColorChalks.FCOLORS.BrightBlue + "Starting program...\n")
 options = ["Create new list", "Read existing list", "Delete pervious list"]
 
 def to_do():
@@ -30,12 +18,12 @@ def to_do():
     if option == 1:
         ## creating new list
         print("")
-        print(bcolors.WARNING + "Creating new TO DO list...")
+        print(ColorChalks.FCOLORS.BrightYellow + "Creating new TO DO list...")
         d = dt.datetime.now()
         n = 1
         t_list = [d]
         while True:
-            print(bcolors.BOLD + "Enter task no ", n)
+            print("Enter task no ", n)
             task = input("\tEnter your task: ")
             t_list.append(task)
             n += 1
@@ -43,7 +31,7 @@ def to_do():
             if ans.lower() in ["n", "no", "nope", "nah"]:
                 print("")
                 pickle.dump(t_list, f)
-                print(bcolors.HEADER + "Tasks added to your list successfully...")
+                print(ColorChalks.FCOLORS.BrightMagenta + "Tasks added to your list successfully...")
                 break
     elif option == 2:
         try:
@@ -52,7 +40,7 @@ def to_do():
                     data = pickle.load(file)
                     print("\tEmpty file...")
                     print("")
-                    print(bcolors.OKGREEN +"\tDate&Time : ", data[0])
+                    print(ColorChalks.FCOLORS.BrightGreen + "\tDate&Time : ", data[0])
                     for i in range(1, len(data)):
                         print("\t",i, " : ", data[i])
                 
@@ -60,8 +48,8 @@ def to_do():
             print("Closing file...")
             pass
     elif option == 3:
-        print(bcolors.FAIL + "You can delete binary file (to_do_list.dat) manually.")
-        
+        print(ColorChalks.FCOLORS.Red + "You can delete binary file (to_do_list.dat) manually.")
+    print(ColorChalks.COLORS.Reset)
 to_do()
 f.close()
 
